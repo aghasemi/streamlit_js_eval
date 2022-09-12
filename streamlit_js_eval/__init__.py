@@ -1,8 +1,12 @@
 import streamlit.components.v1 as components
-import json
+import json, os
+
+absolute_path = os.path.dirname(os.path.abspath(__file__))
+frontend_path = os.path.join(absolute_path, "streamlit_js_eval")
+
 streamlit_js_eval = components.declare_component(
     "streamlit_js_eval",
-    path="./streamlit_js_eval"
+    path=frontend_path
 )
 
 def set_cookie(name, value, duration_days, component_key):
