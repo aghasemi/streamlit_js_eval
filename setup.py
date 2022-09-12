@@ -5,7 +5,7 @@ component_name = "streamlit_js_eval"
 
 setuptools.setup(
     name=component_name,
-    version="0.0.6",
+    version="0.0.7",
     packages=setuptools.find_packages(),
     include_package_data=True,
     install_requires=["streamlit==1.12.0"],

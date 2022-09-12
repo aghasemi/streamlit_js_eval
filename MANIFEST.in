@@ -1,1 +1,1 @@
-include streamlit_js_eval *
+include ./streamlit_js_eval/*
