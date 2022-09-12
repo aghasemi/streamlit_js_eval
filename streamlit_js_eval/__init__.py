@@ -2,7 +2,7 @@ import streamlit.components.v1 as components
 import json, os
 
 absolute_path = os.path.dirname(os.path.abspath(__file__))
-frontend_path = os.path.join(absolute_path, "streamlit_js_eval")
+frontend_path = absolute_path
 
 streamlit_js_eval = components.declare_component(
     "streamlit_js_eval",
