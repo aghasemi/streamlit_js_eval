@@ -1,1 +1,2 @@
 recursive-include streamlit_* *
+include README.md

@@ -114,13 +114,14 @@
 
       
 
-      // Hook things up!
-      window.addEventListener("message", onDataFromPython);
-      init();
+      
       
 
       // Hack to autoset the iframe height.
       window.addEventListener("load", function() {
+        // Hook things up!
+        window.addEventListener("message", onDataFromPython);
+        init();
         window.setTimeout(function() {
           setFrameHeight(document.documentElement.clientHeight) //
         }, 0);
