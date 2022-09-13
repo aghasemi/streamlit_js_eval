@@ -7,7 +7,7 @@ component_name = "streamlit_js_eval"
 
 setuptools.setup(
     name=component_name,
-    version="0.0.12",
+    version="0.0.13",
     description="A custom Streamlit component to evaluate arbitrary Javascript expressions.",
     long_description=pathlib.Path('README.md').read_text(),
     long_description_content_type="text/markdown",
