@@ -2,7 +2,7 @@
 
 [![PyPI version](https://badge.fury.io/py/streamlit_js_eval.svg)](https://badge.fury.io/py/streamlit_js_eval)
 
-SJE is a minima custom Streamlit component, built to evaluate arbitrary Javascript expressions and return the result. It can become useful in doing certain functionalities which are _simple_ things in JavaScript, but unavailable or difficult to do in Streamlit. Examples include cookie management, writing to clipboard, getting device width (e.g. to check if we are on a mobile device), getting browser language, sharing something through Android's share feature, knowing user agent, etc. See [MDN docs](https://developer.mozilla.org/en-US/docs/Web/API) for more information about Web APIs. 
+SJE is a custom Streamlit component, built to evaluate arbitrary Javascript expressions and return the result. It can become useful in doing certain functionalities which are _simple_ things in JavaScript, but unavailable or difficult to do in Streamlit. Examples include cookie management, writing to clipboard, getting device width (e.g. to check if we are on a mobile device), getting browser language, sharing something through Android's share feature, knowing user agent, etc. See [MDN docs](https://developer.mozilla.org/en-US/docs/Web/API) for more information about Web APIs. 
 
 ## Install
 
