@@ -7,7 +7,7 @@ SJE is a minima custom Streamlit component, built to evaluate arbitrary Javascri
 ## Install
 
 ```python
-pip3 install streamlit_js_eval
+pip3 install streamlit_js_eval==0.0.13
 ```
 
 ## Example
