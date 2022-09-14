@@ -22,7 +22,7 @@ st.write(f"Screen width is {streamlit_js_eval(js_expressions='screen.width', wan
 Some more common functionalities are already implemented as Python functions. Examples include:
 
 ```python
-# Returns user's location after asking for permission when the user clicks the generated link with the given tex
+# Returns user's location after asking for permission when the user clicks the generated link with the given text
 location = get_geolocation('Get my location')
 # The URL parts of the page
 location_json = get_page_location()
