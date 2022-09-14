@@ -50,3 +50,27 @@ def get_browser_language(component_key=None):
 def get_page_location(component_key=None):
     if component_key is None: component_key='LOC'
     return json.loads(streamlit_js_eval(js_expressions='JSON.stringify(window.location)', want_output = True, key = component_key))
+
+
+def create_share_link(sharedObject, linkText, successText, component_key=None):
+    js_text = ''' 
+    setFrameHeight(100);
+    document.getElementsByTagName("body")[0].innerHTML += `<a href="#%s" id="shli">%s</a>`;
+    
+    document.getElementById("shli").addEventListener("click", function() {
+        console.log('Sharing')
+        if (navigator.share) {
+            navigator.share(%s).then(() => {
+            document.getElementById("shli").innerHTML = '%s'
+            console.log('Thanks for sharing!');
+        })
+        .catch(console.error);
+        } else {
+           console.log('Sharing failed')
+        }
+      })
+    '''%(str(87264), linkText, sharedObject, successText)
+    
+    if component_key is None: component_key=f'{linkText}{sharedObject}{successText}'
+
+    return streamlit_js_eval(js_expressions=js_text, want_output = True, key = component_key)
