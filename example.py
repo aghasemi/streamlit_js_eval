@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_js_eval import streamlit_js_eval
+from streamlit_js_eval import streamlit_js_eval, copy_to_clipboard, create_share_link
 import json
 
 st.write(f"User agent is {streamlit_js_eval(js_expressions='window.navigator.userAgent', want_output = True, key = 'UA')}")
