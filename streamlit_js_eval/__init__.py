@@ -25,7 +25,7 @@ def get_user_agent(component_key=None):
 def copy_to_clipboard(copiedText, linkText, successText, component_key=None):
     js_text = ''' 
     setFrameHeight(100);
-    document.getElementsByTagName("body")[0].innerHTML += `<a href="#%s" id="cbc">%s</a>`;
+    document.getElementsByTagName("body")[0].innerHTML += `<a href="#%s" id="cbc" rel="noopener noreferrer">%s</a>`;
     
     document.getElementById("cbc").addEventListener("click", function() {
         console.log('Copying')
