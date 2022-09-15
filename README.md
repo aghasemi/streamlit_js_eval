@@ -29,4 +29,4 @@ location = get_geolocation('Get my location')
 location_json = get_page_location()
 ```
 
-See `streamlit_js_eval/__init__.py` for more functions.
+See `streamlit_js_eval/__init__.py` for more functions. Check a demo in `example.py` or [see it live](https://aghasemi-streamlit-js-eval-example-yleu91.streamlitapp.com/).
