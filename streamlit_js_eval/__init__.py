@@ -38,7 +38,7 @@ def copy_to_clipboard(copiedText, linkText, successText, component_key=None):
     return streamlit_js_eval(js_expressions=js_text, want_output = True, key = component_key)
 
 
-def get_geolocation(linkText, component_key=None):
+def get_geolocation(component_key=None):
     js_text = 'getLocation()' 
     if component_key is None: component_key=js_text
     return streamlit_js_eval(js_expressions=js_text, want_output = True, key = component_key)
