@@ -17,3 +17,5 @@ copy_to_clipboard("Text to be copied!", "Copy something to clipboard (only on HT
 # Share something using the sharing API
 create_share_link(dict({'title': 'streamlit-js-eval', 'url': 'https://github.com/aghasemi/streamlit_js_eval', 'text': "A description"}), "Share a URL (only on mobile devices)", 'Successfully shared', component_key = 'shdemo')
                 
+
+if st.checkbox("Check my location"): printf(f"Your coordinates are {get_geolocation('Get my location')}")
