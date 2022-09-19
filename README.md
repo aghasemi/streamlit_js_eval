@@ -9,7 +9,7 @@ SJE is a custom Streamlit component, built to evaluate arbitrary Javascript expr
 ## Install
 
 ```python
-pip3 install streamlit_js_eval==0.1.0
+pip3 install streamlit_js_eval
 ```
 
 ## Example
