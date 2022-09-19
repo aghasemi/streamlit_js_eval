@@ -25,7 +25,7 @@ Some more common functionalities are already implemented as Python functions. Ex
 
 ```python
 # Returns user's location after asking for permission when the user clicks the generated link with the given text
-location = get_geolocation('Get my location')
+location = get_geolocation()
 # The URL parts of the page
 location_json = get_page_location()
 ```
