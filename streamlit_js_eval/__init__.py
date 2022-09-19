@@ -35,13 +35,13 @@ def copy_to_clipboard(copiedText, linkText, successText, component_key=None):
       })
     '''%(str(87264), linkText, copiedText, successText)
     if component_key is None: component_key=f'{linkText}{copiedText}{successText}'
-    return streamlit_js_eval(js_expressions=js_text, want_output = True, key = component_key)
+    return streamlit_js_eval(js_expressions=js_text, key = component_key)
 
 
 def get_geolocation(component_key=None):
     js_text = 'getLocation()' 
     if component_key is None: component_key=js_text
-    return streamlit_js_eval(js_expressions=js_text, want_output = True, key = component_key)
+    return streamlit_js_eval(js_expressions=js_text, key = component_key)
 
 def get_browser_language(component_key=None):
     if component_key is None: component_key='LANG'
@@ -49,7 +49,7 @@ def get_browser_language(component_key=None):
 
 def get_page_location(component_key=None):
     if component_key is None: component_key='LOC'
-    return json.loads(streamlit_js_eval(js_expressions='JSON.stringify(window.location)', want_output = True, key = component_key))
+    return json.loads(streamlit_js_eval(js_expressions='JSON.stringify(window.location)', key = component_key))
 
 
 def create_share_link(sharedObject, linkText, successText, component_key=None):
@@ -73,4 +73,4 @@ def create_share_link(sharedObject, linkText, successText, component_key=None):
     
     if component_key is None: component_key=f'{linkText}{sharedObject}{successText}'
 
-    return streamlit_js_eval(js_expressions=js_text, want_output = True, key = component_key)
+    return streamlit_js_eval(js_expressions=js_text, key = component_key)
