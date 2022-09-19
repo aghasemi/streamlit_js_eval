@@ -14,7 +14,7 @@ pip3 install streamlit_js_eval==0.1.0
 ## Example
 
 ```python
-st.write(f"Screen width is {streamlit_js_eval(js_expressions='screen.width', want_output = True, key = 'SCR')}")
+st.write(f"Screen width is {streamlit_js_eval(js_expressions='screen.width', key = 'SCR')}")
 ```
 `key` is an arbitrary but unique string, required by Streamlit components API for each call to `streamlit_js_eval`.
 
