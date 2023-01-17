@@ -31,3 +31,7 @@ location_json = get_page_location()
 ```
 
 See `streamlit_js_eval/__init__.py` for more functions. Check a demo in `example.py` or [see it live](https://aghasemi-streamlit-js-eval-example-yleu91.streamlitapp.com/).
+
+## Known Limitations
+
+- It seems calling SJE from inside a branch in Streamlit code does not work (e.g. in a loop, `if-else` block, ...)
