@@ -49,7 +49,10 @@ def get_browser_language(component_key=None):
 
 def get_page_location(component_key=None):
     if component_key is None: component_key='LOC'
-    return json.loads(streamlit_js_eval(js_expressions='JSON.stringify(window.location)', key = component_key))
+    location_str = streamlit_js_eval(js_expressions='JSON.stringify(window.location)', key = component_key)
+    if location_str is not None:
+        return json.loads(location_str)
+    return None
 
 
 def create_share_link(sharedObject, linkText, successText, component_key=None):
