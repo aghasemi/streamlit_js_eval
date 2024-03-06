@@ -28,6 +28,8 @@
         return "";
       }
 
+      
+
       const copyToClipboard = function (textToCopy, onSuccess) {
         console.log('Copying to clipboard...')
         navigator.clipboard.writeText(textToCopy).then(function() {
@@ -38,6 +40,20 @@
               /* clipboard write failed */
               console.log('Copy failed')
         });
+      };
+
+      const bsButton = function (title) {
+        console.log('Showing a button..')
+        setFrameHeight(100);
+        //const bdy = document.querySelector("body")
+        document.head.insertAdjacentHTML("beforeEnd",`
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+        `)
+        document.body.insertAdjacentHTML("beforeEnd",`
+          <button class="btn btn-secondary btn-block" onclick="sendDataToPython({value: true, dataType: 'json'});">${title}</button>
+        `)
+        return false;
+        
       };
 
       // https://stackoverflow.com/questions/11042212/ff-13-ie-9-json-stringify-geolocation-object
@@ -102,6 +118,7 @@
         {
           data_from_streamlit = new_value
           want_output = event.data.args.hasOwnProperty('want_output') ? event.data.args.want_output : true 
+          console.log("Evaluating: "+data_from_streamlit)
           result = eval(data_from_streamlit)
           ret_val = want_output ? result : 'No output requested'
           if(want_output) Promise.resolve(ret_val).then(function(value) {
@@ -131,5 +148,6 @@
       // by commenting out below:
       //setFrameHeight(0);
     </script>
+    
   </body>
 </html>
