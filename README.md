@@ -6,6 +6,9 @@
 
 SJE is a custom Streamlit component, built to evaluate arbitrary Javascript expressions and return the result. It can become useful in doing certain functionalities which are _simple_ things in JavaScript, but unavailable or difficult to do in Streamlit. Examples include cookie management, writing to clipboard, getting device width (e.g. to check if we are on a mobile device), getting browser language, sharing something through Android's share feature, knowing user agent, etc. See [MDN docs](https://developer.mozilla.org/en-US/docs/Web/API) for more information about Web APIs. 
 
+- Version 0.1.7: Proposed workaround for issue #2.
+
+
 ## Install
 
 ```python
@@ -34,4 +37,4 @@ See `streamlit_js_eval/__init__.py` for more functions. Check a demo in `example
 
 ## Known Limitations
 
-- It seems calling SJE from inside a branch in Streamlit code does not work (e.g. in a loop, `if-else` block, ...)
+- It seems SJE has issues with `st.button` when getting called from inside a branch in Streamlit (e.g. in a loop, `if-else` block, ...). In version 0.1.7, you may use the custom `bootstrapButton` as a workaround in such situations.
