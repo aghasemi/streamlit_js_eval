@@ -16,8 +16,12 @@ copy_to_clipboard("Text to be copied!", "Copy something to clipboard (only on HT
 
 # Share something using the sharing API
 create_share_link(dict({'title': 'streamlit-js-eval', 'url': 'https://github.com/aghasemi/streamlit_js_eval', 'text': "A description"}), "Share a URL (only on mobile devices)", 'Successfully shared', component_key = 'shdemo')
-                
 
 if st.checkbox("Check my location"):
     loc = get_geolocation()
     st.write(f"Your coordinates are {loc}")
+    
+if True:
+    x = streamlit_js_eval(js_expressions='window.innerWidth', key='WIDTH',  want_output = True,)                
+    st.write(f"Width is {x}")
+    

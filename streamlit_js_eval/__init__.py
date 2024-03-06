@@ -37,6 +37,8 @@ def copy_to_clipboard(copiedText, linkText, successText, component_key=None):
     if component_key is None: component_key=f'{linkText}{copiedText}{successText}'
     return streamlit_js_eval(js_expressions=js_text, key = component_key)
 
+def bootstrapButton(title,component_key=None):
+    return streamlit_js_eval(js_expressions=f"bsButton('{title}')", key=component_key if component_key is not None else title)
 
 def get_geolocation(component_key=None):
     js_text = 'getLocation()' 
