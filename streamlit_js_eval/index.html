@@ -60,22 +60,41 @@
       function getLocation()  {
           return new Promise((resolve, reject) => {
               if (navigator.geolocation) {
-                  navigator.geolocation.getCurrentPosition((position) =>
-                      resolve({
-                          coords: {
-                              accuracy: position.coords.accuracy,
-                              altitude: position.coords.altitude,
-                              altitudeAccuracy: position.coords.altitudeAccuracy,
-                              heading: position.coords.heading,
-                              latitude: position.coords.latitude,
-                              longitude: position.coords.longitude,
-                              speed: position.coords.speed,
-                          },
-                          timestamp: position.timestamp,
-                      }),
+                  navigator.geolocation.getCurrentPosition(
+                      (position) => {
+                          resolve({
+                              coords: {
+                                  accuracy: position.coords.accuracy,
+                                  altitude: position.coords.altitude,
+                                  altitudeAccuracy: position.coords.altitudeAccuracy,
+                                  heading: position.coords.heading,
+                                  latitude: position.coords.latitude,
+                                  longitude: position.coords.longitude,
+                                  speed: position.coords.speed,
+                              },
+                              timestamp: position.timestamp,
+                          });
+                      },
+                      (error) => {
+                          // Handle geolocation errors including permission denial
+                          // Note: We resolve (not reject) with an error object because
+                          // Streamlit components need to return data to Python via resolve.
+                          // Rejecting would prevent sending error details back to the app.
+                          resolve({
+                              error: {
+                                  code: error.code,
+                                  message: error.message,
+                              }
+                          });
+                      }
                   );
               } else {
-                  reject(new Error('Browser does not support geolocation!'));
+                  resolve({
+                      error: {
+                          code: 0,
+                          message: 'Browser does not support geolocation!'
+                      }
+                  });
               }
           });
       }
