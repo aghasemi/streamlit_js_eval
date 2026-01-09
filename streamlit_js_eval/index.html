@@ -44,7 +44,7 @@
 
       const bsButton = function (title) {
         console.log('Showing a button..')
-        setFrameHeight(100);
+        setFrameHeight(50);
         //const bdy = document.querySelector("body")
         document.head.insertAdjacentHTML("beforeEnd",`
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
@@ -147,6 +147,49 @@
       // Optionally, if the automatic height computation fails you, give this component a height manually
       // by commenting out below:
       //setFrameHeight(0);
+
+      // Sync iframe theme with parent page theme
+      function syncTheme(theme) {
+        // Check multiple sources for theme detection
+        let detectedTheme = theme;
+        
+        // If no theme passed, try to detect from parent page
+        if (!detectedTheme) { 
+          detectedTheme  = window.getComputedStyle(window.parent.document.getElementsByClassName("stApp")[0]).getPropertyValue("color-scheme")
+        }
+        
+        if (detectedTheme === 'dark') {
+          console.log('Applying dark theme styles...')
+          document.body.style.backgroundColor = '#0e1117';
+          document.body.style.color = '#fafafa';
+        } else {
+          console.log('Applying light theme styles...')
+          document.body.style.backgroundColor = '#ffffff';
+          document.body.style.color = '#000000';
+        }
+      }
+      
+      // Listen for system theme changes
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+          syncTheme(e.matches ? 'dark' : 'light');
+        });
+      }
+
+      // Listen for theme changes from Streamlit
+      window.addEventListener("message", function(event) {
+        if (event.data.type === "streamlit:render") {
+          const theme = event.data.args.theme;
+          if (theme) {
+            syncTheme(theme.base);
+          }
+          else {
+            console.log('No theme info found in event data. Using media query detection.')
+            syncTheme();
+          }
+        }
+      });
+
     </script>
     
   </body>
