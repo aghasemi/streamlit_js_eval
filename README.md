@@ -75,4 +75,4 @@ elif location:
 
 ## Known Limitations
 
-- It seems SJE has issues with `st.button` when getting called from inside a branch in Streamlit (e.g. in a loop, `if-else` block, ...). In version 0.1.7, you may use the custom `bootstrapButton` as a workaround in such situations.
+- It seems SJE has issues with `st.button` when getting called from inside a branch in Streamlit (e.g. in a loop, `if-else` block, ...). Since version 0.1.7, you may use the custom `bootstrapButton` as a workaround in such situations.
