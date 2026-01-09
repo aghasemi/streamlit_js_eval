@@ -7,7 +7,7 @@ component_name = "streamlit_js_eval"
 # rm -rf dist/;python3 setup.py sdist bdist_wheel;twine upload dist/*
 setuptools.setup(
     name=component_name,
-    version="0.1.7",
+    version="0.1.8",
     description="A custom Streamlit component to evaluate arbitrary Javascript expressions.",
     long_description=pathlib.Path('README.md').read_text(),
     long_description_content_type="text/markdown",
