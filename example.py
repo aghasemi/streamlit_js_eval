@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_js_eval import streamlit_js_eval, copy_to_clipboard, create_share_link, get_geolocation
+from streamlit_js_eval import streamlit_js_eval, copy_to_clipboard, create_share_link, get_geolocation, get_page_href, redirect_to
 import json
 
 st.write(f"User agent is _{streamlit_js_eval(js_expressions='window.navigator.userAgent', want_output = True, key = 'UA')}_")
@@ -25,3 +25,11 @@ if True:
     x = streamlit_js_eval(js_expressions='window.innerWidth', key='WIDTH',  want_output = True,)                
     st.write(f"Width is {x}")
     
+st.write(f"Full page location is _{get_page_href()}_")
+
+if st.button("Add get parameter streamlitUrl=test"):
+    st.query_params['streamlitUrl'] = 'test'
+    st.rerun()
+
+if st.button("Try redirect to example.com"):
+    redirect_to("https://example.com")

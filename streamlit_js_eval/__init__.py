@@ -1,5 +1,7 @@
+from urllib.parse import parse_qs, unquote, urlencode, urlparse
 import streamlit.components.v1 as components
 import json, os
+import streamlit as st
 
 absolute_path = os.path.dirname(os.path.abspath(__file__))
 frontend_path = absolute_path
@@ -79,3 +81,57 @@ def create_share_link(sharedObject, linkText, successText, component_key=None):
     if component_key is None: component_key=f'{linkText}{sharedObject}{successText}'
 
     return streamlit_js_eval(js_expressions=js_text, key = component_key)
+
+def get_local_storage(key, component_key=None):
+    js_ex=f'localStorage.getItem(\'{key}\')'
+    if component_key is None: component_key=f'get_local_storage_{key}'
+    return streamlit_js_eval(js_expressions=js_ex, key = component_key)
+
+def set_local_storage(key, value, component_key=None):
+    js_ex=f'localStorage.setItem(\'{key}\', \'{value}\')'
+    if component_key is None: component_key=f'set_local_storage_{key}_{value}'
+    return streamlit_js_eval(js_expressions=js_ex, key = component_key)
+
+def clear_local_storage(component_key=None):
+    js_ex='localStorage.clear()'
+    if component_key is None: component_key='clear_local_storage'
+    return streamlit_js_eval(js_expressions=js_ex, key = component_key)
+
+def remove_local_storage(key, component_key=None):
+    js_ex=f'localStorage.removeItem(\'{key}\')'
+    if component_key is None: component_key=f'remove_local_storage_{key}'
+    return streamlit_js_eval(js_expressions=js_ex, key = component_key)
+
+def redirect_to(url, component_key=None):
+    st.markdown(f'<meta http-equiv="refresh" content="0; url={url}">', unsafe_allow_html=True)
+
+def get_page_href(component_key=None):
+    """
+    Returns the actual URL of the current Streamlit page, including query parameters.
+
+    Streamlit components run inside an iframe, so `window.location.href` normally
+    returns the internal component URL, for example:
+
+    `http://localhost:8501/component/streamlit_js_eval.streamlit_js_eval/index.html?streamlitUrl=...`
+
+    Streamlit injects the *real* page URL into a `streamlitUrl` query parameter.
+    This function extracts and decodes that value, then reattaches any current
+    `st.query_params`, and returns the true page URL. Example output:
+
+    `http://localhost:8501/?arg=test`
+    
+    """
+    if component_key is None: component_key='LOC_HREF'
+    location = get_page_location(component_key)
+    if location is None:
+        return None
+    full_url = location["href"]
+    parsed_url = urlparse(full_url)
+    query_params = parse_qs(parsed_url.query)
+    streamlit_url_encoded = query_params.get('streamlitUrl', [None])[0]
+    if streamlit_url_encoded:
+        params = ''
+        if (st.query_params):
+            params = '?' + urlencode(st.query_params)
+        return unquote(streamlit_url_encoded) + params
+    return full_url
