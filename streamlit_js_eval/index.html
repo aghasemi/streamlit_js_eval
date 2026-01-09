@@ -154,7 +154,8 @@
         let detectedTheme = theme;
         
         // If no theme passed, try to detect from parent page
-        if (!detectedTheme) { 
+        if (!detectedTheme) {
+          // See https://discuss.streamlit.io/t/check-if-the-app-is-in-dark-mode-or-light-mode-at-runtime/20222/8
           detectedTheme  = window.getComputedStyle(window.parent.document.getElementsByClassName("stApp")[0]).getPropertyValue("color-scheme")
         }
         
