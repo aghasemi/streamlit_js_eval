@@ -4,9 +4,13 @@ and that the JavaScript code structure is correct.
 """
 import sys
 import os
+from pathlib import Path
+
+# Get the repository root directory
+repo_root = Path(__file__).parent.absolute()
 
 # Add the package to the path
-sys.path.insert(0, '/home/runner/work/streamlit_js_eval/streamlit_js_eval')
+sys.path.insert(0, str(repo_root))
 
 # Test import
 try:
@@ -17,7 +21,7 @@ except Exception as e:
     sys.exit(1)
 
 # Check that the JavaScript file has been updated
-index_html_path = '/home/runner/work/streamlit_js_eval/streamlit_js_eval/streamlit_js_eval/index.html'
+index_html_path = repo_root / 'streamlit_js_eval' / 'index.html'
 with open(index_html_path, 'r') as f:
     content = f.read()
     

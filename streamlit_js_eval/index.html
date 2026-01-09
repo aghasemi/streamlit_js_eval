@@ -77,6 +77,9 @@
                       },
                       (error) => {
                           // Handle geolocation errors including permission denial
+                          // Note: We resolve (not reject) with an error object because
+                          // Streamlit components need to return data to Python via resolve.
+                          // Rejecting would prevent sending error details back to the app.
                           resolve({
                               error: {
                                   code: error.code,
